@@ -17,6 +17,8 @@ namespace MyExtraHomeWorks
             this.pages = pages;
         }
 
+        public int Id { get; set; }
+
         public string Name {  get { return name; } }
         public string Author { get { return author; } }
         public int Pages { get { return pages;} }
