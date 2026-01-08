@@ -8,50 +8,31 @@ namespace MyExtraHomeWorks
     {
         private Book[] books;
 
-        public MyLibrary(Book[] books)
+        public MyLibrary(Book[] books) //Приймаються значення для полів книг
         {
             this.books = books;
         }
 
-        public string this[int index]
+        public Book this[string bookname]
         {
             get
             {
-                if (index >= 0 && index < books.Length)
-                {
-                    Book book = books[index];
-                    return $"Назва книги {book.Name}\n" +
-                       $"Імя автору {book.Author}\n" +
-                       $"Кількість сторінок {book.Pages}\n";
-                }
-                else
-                {
-                    return "Книгу не знайдено";
-                }
-
+                return GetBookByName(bookname); 
             }
-            
+
         }
 
-        public void SearchByName(string title)
+        private Book GetBookByName(string title) //Приймається значення від змінної title в класі Program
         {
-            bool found = false;
-
-            for (int i = 0; i < books.Length; i++)
+            for (int i = 0; i < books.Length; i++) //Циклом перевіряємо всі існуючі книги в масиві
             {
                 if (books[i].Name == title)
                 {
-                    books[i].ShowInfo();
-                    found = true;
+                    return books[i];    
                 }
             }
-            if (!found)
-            {
-                Console.WriteLine("Невідома книга");
-            }
+            
+            return null;
         }
-
-
-
     }
 }

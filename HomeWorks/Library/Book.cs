@@ -6,26 +6,23 @@ namespace MyExtraHomeWorks
 {
     internal class Book
     {
-        private string name;
-        private string author;
-        private int pages;
-
-        public Book(string name, string author, int pages)
+    
+        public Book(string name, string author, int pages) //Приймається значення з базового классу
         {
-            this.name = name;
-            this.author = author;
-            this.pages = pages;
+            Name = name;
+            Author = author;
+            Pages = pages;
         }
 
-        public string Name {  get { return name; } }
-        public string Author { get { return author; } }
-        public int Pages { get { return pages;} }
+        public string Name { get; }
+        public string Author { get; }
+        public int Pages { get; }
 
         public void ShowInfo()
         {
-            Console.WriteLine("Назва книги" + name);
-            Console.WriteLine("Автор книги" + author);
-            Console.WriteLine("Кількість сторінок" + pages);
+            Console.WriteLine("Назва книги" + " " + Name);
+            Console.WriteLine("Автор книги" + " " + Author);
+            Console.WriteLine("Кількість сторінок" + " " + Pages);
         }
     }
 
