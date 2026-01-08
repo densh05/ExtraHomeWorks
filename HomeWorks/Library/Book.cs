@@ -18,11 +18,13 @@ namespace MyExtraHomeWorks
         public string Author { get; }
         public int Pages { get; }
 
-        public void ShowInfo()
+        public string GetInfo()
         {
-            Console.WriteLine("Назва книги" + " " + Name);
-            Console.WriteLine("Автор книги" + " " + Author);
-            Console.WriteLine("Кількість сторінок" + " " + Pages);
+            string result = @$"Назва книги  {Name} 
+Автор книги {Author}
+Кількість сторінок {Pages}";
+
+            return result;
         }
     }
 

@@ -29,7 +29,8 @@ namespace MyExtraHomeWorks
                 Console.WriteLine("Нічого не знайдено за цією назвою");
             }
             {
-                found.ShowInfo();
+                var result = found.GetInfo();
+                Console.WriteLine(result);
             }
 
             Console.ReadKey();
