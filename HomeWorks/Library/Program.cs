@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Channels;
+using Library;
 
 namespace MyExtraHomeWorks
 {
@@ -34,6 +35,11 @@ namespace MyExtraHomeWorks
             }
 
             Console.ReadKey();
+
+
+
+
+            BookWithImages bookwi = new BookWithImages("C#", "Jefri Richter", ["sun", "tree"], [5, 20]);
         }
 
         

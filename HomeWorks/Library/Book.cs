@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyExtraHomeWorks
 {
-    internal class Book
+     class Book
     {
     
         public Book(string name, string author, int pages) //Приймається значення з базового классу
