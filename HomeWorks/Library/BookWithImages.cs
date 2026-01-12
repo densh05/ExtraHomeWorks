@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MyExtraHomeWorks;
+﻿using MyExtraHomeWorks;
 
 namespace Library
 {
      class BookWithImages : Book
     {
-        private string[] images ;
-        private int[] imagespages;
-        
+        private readonly string[] images; // чому ми робимо ці поля readonly?
+        private readonly int[] imagespages; // чому ми робимо ці поля readonly?
 
         public BookWithImages(string name, string author, int pages, string[] images, int[] imagespages)
             : base(name, author, pages)
@@ -17,32 +13,32 @@ namespace Library
             this.images = images;
             this.imagespages = imagespages;
         }
-        
-        public override void MoveNext()
-        {
-            if (currentPageNumber < PagesCount)
-            {
-                currentPageNumber++;
-                Console.WriteLine($"Поточна сторінка: {currentPageNumber}");
-                byte imageCount = 0;
 
-                for(int i = 0; i < imagespages.Length && imageCount < 2; i++)
+        public string[] CurrentImages { get; private set; }
+
+        public required string TitleImage { get; init; }  
+
+        public override bool MoveNext()
+        {
+            if (base.MoveNext())
+            {
+                int imageCount = 0;
+                string[] foundImages = new string[2];
+
+                for (int i = 0; i < imagespages.Length && imageCount < 2; i++)
                 {
                     if (imagespages[i] == currentPageNumber)
                     {
-                        Console.WriteLine($"Ця сторінка з картинкою: {images[i]}");
-                        imageCount++;   
-                    }                               
-                }             
-            }
-            else
-            {
-                Console.WriteLine("Книга закінчилась");
-            }
-        }
+                        foundImages[imageCount++] = images[i];
+                    }
+                }
 
-        
-        
+                CurrentImages = foundImages;   
+                
+                return true;    
+            }
 
+            return false;   
+        }        
     }
 }
