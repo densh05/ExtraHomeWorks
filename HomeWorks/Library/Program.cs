@@ -29,21 +29,26 @@ namespace MyExtraHomeWorks
             {
                 Console.WriteLine("Нічого не знайдено за цією назвою");
             }
+            else
             {
                 var result = found.GetInfo();
                 Console.WriteLine(result);
             }
 
-            Console.ReadKey();
+            new Random().Next(2, 40);    
+
+            BookWithImages bookwi = new BookWithImages("C#", "Jefri Richter", 15 , ["sun", "fish"], [7, 10]);
+            bookwi.GetInfo();
+
+            for (int i = 0; i < bookwi.PagesCount; i++)
+            {
+                Console.WriteLine(bookwi.CurrentPage);
+                bookwi.MoveNext();
+            }
 
 
 
-
-            BookWithImages bookwi = new BookWithImages("C#", "Jefri Richter", ["sun", "tree"], [5, 20]);
         }
-
-        
-
         
     }
 }

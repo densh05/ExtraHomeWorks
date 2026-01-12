@@ -6,23 +6,47 @@ namespace MyExtraHomeWorks
 {
      class Book
     {
-    
-        public Book(string name, string author, int pages) //Приймається значення з базового классу
+        protected int currentPageNumber = 0;
+        public string CurrentPage { get { return pagesContent[currentPageNumber]; } }
+
+        private readonly string[] pagesContent;
+        public Book(string name, string author, int pagesCount) //Приймається значення з базового классу
         {
             Name = name;
             Author = author;
-            Pages = pages;
+            PagesCount = pagesCount;
+            pagesContent = new string[PagesCount];
         }
 
         public string Name { get; }
         public string Author { get; }
-        public int Pages { get; }
+        public int PagesCount { get; }
+
+
+        public void LoadPage(string content, int pageNumber)
+        {
+            if (pageNumber >= 0 && pageNumber <= pagesContent.Length)
+            {
+                pagesContent[pageNumber - 1] = content;
+            }
+        }
+
+        public virtual void MoveNext()
+        {
+            if (currentPageNumber < pagesContent.Length)
+            currentPageNumber++;
+        }
+
+        public void Reset()
+        {
+            currentPageNumber = 0;
+        }
 
         public string GetInfo()
         {
             string result = @$"Назва книги  {Name} 
 Автор книги {Author}
-Кількість сторінок {Pages}";
+Кількість сторінок {PagesCount}";
 
             return result;
         }

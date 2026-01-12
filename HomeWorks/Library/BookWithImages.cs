@@ -9,30 +9,39 @@ namespace Library
     {
         private string[] images ;
         private int[] imagespages;
-        private int currentPage = 0;
+        
 
         public BookWithImages(string name, string author, int pages, string[] images, int[] imagespages)
             : base(name, author, pages)
         {
             this.images = images;
             this.imagespages = imagespages;
-
-            
         }
         
-        public void Next()
+        public override void MoveNext()
         {
-            if(currentPage < Pages)
+            if (currentPageNumber < PagesCount)
             {
-                currentPage++;
-                Console.WriteLine($"Поточна сторінка: {currentPage }");
+                currentPageNumber++;
+                Console.WriteLine($"Поточна сторінка: {currentPageNumber}");
+                byte imageCount = 0;
 
-                for( int i = 0; i < images.Length; i++ )
+                for(int i = 0; i < imagespages.Length && imageCount < 2; i++)
                 {
-
-                }
+                    if (imagespages[i] == currentPageNumber)
+                    {
+                        Console.WriteLine($"Ця сторінка з картинкою: {images[i]}");
+                        imageCount++;   
+                    }                               
+                }             
+            }
+            else
+            {
+                Console.WriteLine("Книга закінчилась");
             }
         }
+
+        
         
 
     }
