@@ -1,40 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyExtraHomeWorks
+﻿namespace MyExtraHomeWorks
 {
-     class Book
+    class Book
     {
-        protected int currentPageNumber = 0;
-        public string CurrentPage { get { return pagesContent[currentPageNumber]; } }
+        protected int currentPageNumber = 1; // поле-внутрішня змінна для відстеження поточної сторінки 
+        public int CurrentPageNumber { get { return currentPageNumber; } } // властивість для отримання номера поточної сторінки    
+        
+        public string CurrentPage { get { return pageContent[currentPageNumber - 1]; } } // властивість для отримання вмісту поточної сторінки
 
-        private readonly string[] pagesContent;
-        public Book(string name, string author, int pagesCount) //Приймається значення з базового классу
+        protected readonly string[] pageContent; // поле-внутрішня змінна-масив інакпсулюємо внутрішній стан об'єкта
+
+        public Book(string name, string author, int pagesCount) // Приймається значення з базового класу або конструктора
         {
             Name = name;
             Author = author;
-            PagesCount = pagesCount;
-            pagesContent = new string[PagesCount];
+            PageCount = pagesCount;
+            pageContent = new string[PageCount];
         }
 
-        public string Name { get; }
+        public string Name { get; } 
         public string Author { get; }
-        public int PagesCount { get; }
+        public int PageCount { get; }
 
 
         public void LoadPage(string content, int pageNumber)
         {
-            if (pageNumber >= 0 && pageNumber <= pagesContent.Length)
+            if (pageNumber >= 0 && pageNumber <= pageContent.Length)
             {
-                pagesContent[pageNumber - 1] = content;
+                pageContent[pageNumber - 1] = content;
             }
         }
 
-        public virtual void MoveNext()
+        public virtual bool MoveNext()
         {
-            if (currentPageNumber < pagesContent.Length)
-            currentPageNumber++;
+            if (currentPageNumber < PageCount)
+            {
+                currentPageNumber++;
+                return true;
+            }
+
+            return false;
         }
 
         public void Reset()
@@ -42,16 +46,13 @@ namespace MyExtraHomeWorks
             currentPageNumber = 0;
         }
 
-        public string GetInfo()
+        public string Open()
         {
             string result = @$"Назва книги  {Name} 
 Автор книги {Author}
-Кількість сторінок {PagesCount}";
+Кількість сторінок {PageCount}";
 
             return result;
         }
-    }
-
-
-    
+     }  
 }
