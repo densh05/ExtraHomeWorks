@@ -32,6 +32,8 @@ namespace MyExtraHomeWorks
 
             var library = new MyLibrary(books); // Робимо екземпеляр класу MyLibrary, в якості аргументу передаємо змінну book  
 
+
+            Console.WriteLine("Привіт!");
             Console.WriteLine("Введіть назву книги, яку хотіли б прочитати в нашій електронній бібліотеці");
             string title = Console.ReadLine(); //в змінну типу стрінг записуємо значення для пошуку за назвою
             Book found = library[title];
