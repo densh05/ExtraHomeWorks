@@ -8,7 +8,7 @@ namespace Library
         private readonly int[] imagespages; // чому ми робимо ці поля readonly?
 
         public BookWithImages(string name, string author, int pages, string[] images, int[] imagespages)
-            : base(name, author, pages)
+            :base(name, author, pages)
         {
             this.images = images;
             this.imagespages = imagespages;
@@ -27,7 +27,8 @@ namespace Library
 
                 for (int i = 0; i < imagespages.Length && imageCount < 2; i++)
                 {
-                    if (imagespages[i] == currentPageNumber)
+                    if (imagespages[i] == CurrentPageNumber
+                        )
                     {
                         foundImages[imageCount++] = images[i];
                     }
@@ -39,6 +40,14 @@ namespace Library
             }
 
             return false;   
-        }        
+        }  
+        
+        public override string Open()
+        {
+            string result = base.Open();
+            result += $"\nОбкладинка книги: {TitleImage}";
+            result += $"\nЦя книга містить {imagespages.Length} сторінок з картинками.";
+            return result;
+        }
     }
 }
