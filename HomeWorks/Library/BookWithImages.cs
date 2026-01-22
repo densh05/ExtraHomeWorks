@@ -46,7 +46,7 @@ namespace Library
         {
             string result = base.Open();
             result += $"\nОбкладинка книги: {TitleImage}";
-            result += $"\nЦя книга містить {imagespages.Length} сторінок з картинками.";
+            result += $"Ця книга містить {imagespages.Length} сторінок з картинками.";
             return result;
         }
     }
