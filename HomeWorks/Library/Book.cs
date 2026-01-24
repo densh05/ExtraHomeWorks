@@ -2,10 +2,10 @@
 {
     class Book
     {
-        protected int currentPageNumber = 1; // поле-внутрішня змінна для відстеження поточної сторінки 
-        public int CurrentPageNumber { get { return currentPageNumber; } } // властивість для отримання номера поточної сторінки    
+         // поле-внутрішня змінна для відстеження поточної сторінки 
+        public int CurrentPageNumber { get; protected set; }  // властивість для отримання номера поточної сторінки    
         
-        public string CurrentPage { get { return pageContent[currentPageNumber - 1]; } } // властивість для отримання вмісту поточної сторінки
+        public string CurrentPage { get { return pageContent[CurrentPageNumber - 1]; } } // властивість для отримання вмісту поточної сторінки
 
         protected readonly string[] pageContent; // поле-внутрішня змінна-масив інакпсулюємо внутрішній стан об'єкта
 
@@ -15,6 +15,7 @@
             Author = author;
             PageCount = pagesCount;
             pageContent = new string[PageCount];
+            CurrentPageNumber = 1;
         }
 
         public string Name { get; } 
@@ -32,9 +33,9 @@
 
         public virtual bool MoveNext()
         {
-            if (currentPageNumber < PageCount)
+            if (CurrentPageNumber < PageCount)
             {
-                currentPageNumber++;
+                CurrentPageNumber++;
                 return true;
             }
 
@@ -43,10 +44,10 @@
 
         public void Reset()
         {
-            currentPageNumber = 0;
+            CurrentPageNumber = 0;
         }
 
-        public string Open()
+        public virtual string Open()
         {
             string result = @$"Назва книги  {Name} 
 Автор книги {Author}
