@@ -1,41 +1,45 @@
-﻿namespace MyExtraHomeWorks
+﻿using Library;
+using System.Text;
+
+namespace MyExtraHomeWorks
 {
-    class Book
+    class Book(string name, string author, Page[] pages)
     {
+
+        protected Page[] pages = pages;
+        protected int currentPageNumber = 0;
          // поле-внутрішня змінна для відстеження поточної сторінки 
-        public int CurrentPageNumber { get; protected set; }  // властивість для отримання номера поточної сторінки    
-        
-        public string CurrentPage { get { return pageContent[CurrentPageNumber - 1]; } } // властивість для отримання вмісту поточної сторінки
 
-        protected readonly string[] pageContent; // поле-внутрішня змінна-масив інакпсулюємо внутрішній стан об'єкта
-
-        public Book(string name, string author, int pagesCount) // Приймається значення з базового класу або конструктора
+        public string Name { get; } = name;
+        public string Author { get; } = author;
+        public int PageCount { get; } = pages.Length;
+        public Page this[int number]
         {
-            Name = name;
-            Author = author;
-            PageCount = pagesCount;
-            pageContent = new string[PageCount];
-            CurrentPageNumber = 1;
+            get
+            {
+                for (int i = 0; i < pages.Length; i++)
+                {
+                    if (pages[i].Number == number)
+                    return pages[i];
+                }
+
+                return null; 
+            }
         }
 
-        public string Name { get; } 
-        public string Author { get; }
-        public int PageCount { get; }
-
-
-        public void LoadPage(string content, int pageNumber)
+        public Page CurrentPage
         {
-            if (pageNumber >= 0 && pageNumber <= pageContent.Length)
+            get
             {
-                pageContent[pageNumber - 1] = content;
+                return this[currentPageNumber];
             }
         }
 
         public virtual bool MoveNext()
         {
-            if (CurrentPageNumber < PageCount)
+            if (currentPageNumber < PageCount)
             {
-                CurrentPageNumber++;
+                currentPageNumber++;
                 return true;
             }
 
@@ -44,7 +48,7 @@
 
         public void Reset()
         {
-            CurrentPageNumber = 0;
+            currentPageNumber = 0;
         }
 
         public virtual string Open()

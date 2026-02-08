@@ -4,14 +4,9 @@ using System.Text;
 
 namespace MyExtraHomeWorks
 {
-    internal class MyLibrary
+    internal class MyLibrary(Book[] books)
     {
-        private Book[] books;
-
-        public MyLibrary(Book[] books) //Приймаються значення для полів книг
-        {
-            this.books = books;
-        }
+        private readonly Book[] books = books;
 
         public Book this[string bookname]
         {

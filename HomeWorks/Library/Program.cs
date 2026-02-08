@@ -13,74 +13,68 @@ namespace MyExtraHomeWorks
 
             Book[] books =  //Записуємо в користувальницький конструктор классу Воок значення для полів
             [
-                new Book("Кобзар","Тарас Шевченко", 30),
-                new Book("Лісова пісня","Леся Українка", 25),
-                new Book("Маленький принц","Антуан де Сент-Екзюпері", 20),
+                new Book("Кобзар","Тарас Шевченко", GenerateBookContent(3)),
+                new Book("Лісова пісня","Леся Українка", GenerateBookContent(3)),
+                new Book("Маленький принц","Антуан де Сент-Екзюпері", GenerateBookContent(3)),
                 // Поліморфізм - неявний up cast до базового класу Book
                // UPCASTING-1
-                new BookWithImages("C#", "Jeffry Richter", 15, ["sun", "fish"], [7, 10]) // up-cast до классу Book
+                new BookWithImages("C#", "Jeffry Richter", GenerateBookContentWithImages(3)) // up-cast до классу Book
                 {
                     TitleImage = "C# Logo"
                 }
             ];
 
-            for (int i = 0; i < books.Length; i++)
-            {
-                // UPCASTING-2
-                LoadBookContent(books[i]);
-            }
-
             var library = new MyLibrary(books); // Робимо екземпеляр класу MyLibrary, в якості аргументу передаємо змінну book  
 
-
-            Console.WriteLine("Привіт!");
-            Console.WriteLine("Введіть назву книги, яку хотіли б прочитати в нашій електронній бібліотеці");
-            string title = Console.ReadLine(); //в змінну типу стрінг записуємо значення для пошуку за назвою
-            Book found = library[title];
-
-            if (found == null)
+            while (true)
             {
-                Console.WriteLine("Нічого не знайдено за цією назвою");
-            }
-            else
-            {
-                var result = found.Open();
-                Console.WriteLine(result);
+                Console.WriteLine("Привіт!");
+                Console.WriteLine("Введіть назву книги, яку хотіли б прочитати в нашій електронній бібліотеці");
+                string title = Console.ReadLine(); //в змінну типу стрінг записуємо значення для пошуку за назвою
+                Book found = library[title];
 
-                // Читаємо книгу посторінково, якщо це книга з ілюстраціями то виводимо і їх
-                while (found.MoveNext())
+                if (found == null)
                 {
-                    Console.WriteLine("1-Далі...");
-                    Console.WriteLine("2-З початку");
-                    Console.WriteLine("3-Вихід");
+                    Console.WriteLine("Нічого не знайдено за цією назвою");
+                }
+                else
+                {
+                    var result = found.Open();
+                    Console.WriteLine(result);
 
-                    var choice = Console.ReadLine();
-
-                    switch (choice)
+                    // Читаємо книгу посторінково, якщо це книга з ілюстраціями то виводимо і їх
+                    while (found.MoveNext())
                     {
-                        case "1":
-                            Console.WriteLine($"Сторінка номер {found.CurrentPageNumber}");
-                            Console.WriteLine(found.CurrentPage);
+                        Console.WriteLine("1-Далі...");
+                        Console.WriteLine("2-З початку");
+                        Console.WriteLine("3-Вихід");
 
-                            if (found is BookWithImages bookWithImages)
-                            {
-                                for (int k = 0; k < bookWithImages.CurrentImages.Length; k++)
-                                   if (bookWithImages.CurrentImages[k] != null)
-                                      Console.WriteLine(bookWithImages.CurrentImages[k]);
-                            }
-                            break;
-                        case "2":
-                            found.Reset();
-                            break;
-                        case "3":
-                            goto exit;
-                        default:
-                            Console.WriteLine("Невірний вибір");
-                            break;
+                        var choice = Console.ReadLine();
+
+                        switch (choice)
+                        {
+                            case "1":
+                                Console.WriteLine($"Сторінка номер {found.CurrentPage.Number}");
+                                Console.WriteLine(found.CurrentPage.Text);
+
+                                if (found is BookWithImages bookWithImages)
+                                {
+                                    var pageWithImages = (PageWithImages)bookWithImages.CurrentPage;
+                                    Console.WriteLine(pageWithImages.Image);
+                                }
+                                break;
+                            case "2":
+                                found.Reset();
+                                break;
+                            case "3":
+                                goto exit;
+                            default:
+                                Console.WriteLine("Невірний вибір");
+                                break;
+                        }
                     }
                 }
             }
-            
         exit:
             // Поліморфізм
 
@@ -103,18 +97,57 @@ namespace MyExtraHomeWorks
             Book bookUpCasted = bookWithImagesUpCasted; // up-cast до все скрили властивість TitleImage але вона є просто скрита
         }
 
-
         // Поліморфізм адже можна передлавати як клас Book так і клас BookWithImages
-        public static void LoadBookContent(Book book)
+        public static Page[] GenerateBookContent(int pageCount)
         {
-            for (int i = 1; i < book.PageCount; i++)
+
+            Page[] pages = new Page[pageCount];
+            string result;   
+            string[] words = ["Привіт", "справи", "ти", "бувай", "забув", "може", "яблуко", "якщо", "шість", "козак"];
+            Random randomizer = new Random();
+
+            for (int i = 0; i < pageCount; i++)
             {
-                book.LoadPage(@$"Це історія надзвичайної пригоди, яку втнула ватага ґномів, узявшись відшукати загарбане драконом золото. 
-Мимохіть учасником цієї ризикованої виправи став Більбо Торбин, прихильний до комфорту і позбавлений амбіцій гобіт, котрий, на власний подив, виявив неабияку винахідливість і вправність у ролі зломщика. 
-Сутички з тролями, ґоблінами, ґномами, ельфами та гігантськими павуками, бесіда з драконом, Смоґом Величним, і радше мимовільна присутність на Битві П’ятьох Армій — ось лише деякі пригоди, що їх судилося пережити Більбо.
-Але траплялись і світліші моменти: щира дружба, смачне частування, сміх та пісні. Написаний професором Толкіном для власних дітей, «Гобіт» відразу ж по виході у світ зустрів палке схвалення. 
-Ця дивовижна історія, цілком закінчена та вивершена, водночас є преамбулою до «Володаря Перснів».", i);
+                result = string.Empty;
+
+                for (int j = 0; j < 10 ; j++)
+                {
+                    int index = randomizer.Next(0, words.Length - 1);
+                    result += words[index] + " ";
+                }
+
+                pages[i] = new Page(result, i + 1); 
             }
+
+            return pages;
+        }
+
+        public static PageWithImages[] GenerateBookContentWithImages(int pageCount)
+        {
+
+            PageWithImages[] pages = new PageWithImages[pageCount];
+            string result;
+            string[] words = ["Привіт", "справи", "ти", "бувай", "забув", "може", "яблуко", "якщо", "шість", "козак"];
+            string[] images = ["Cat", "Cloud", "Rain", "Snow", "Fisher", "Bastion", "Door", "Cup", "House", "Tea"];
+            Random randomizer = new Random();
+
+            for (int i = 0; i < pageCount; i++)
+            {
+                result = string.Empty;
+
+                for (int j = 0; j < 10; j++)
+                {
+                    int index = randomizer.Next(0, words.Length - 1);
+                    result += words[index] + " ";
+                }
+
+                int imageIndex = randomizer.Next(-1, images.Length - 1);
+                string image = (imageIndex == -1) ? null : images[imageIndex];
+
+                pages[i] = new PageWithImages(result, i + 1, image);
+            }
+
+            return pages;
         }
     }
 }
