@@ -11,9 +11,11 @@ namespace MyExtraHomeWorks
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
+            Page[] pagesForKobzar = GenerateBookContent(3);
+
             Book[] books =  //Записуємо в користувальницький конструктор классу Воок значення для полів
-            [
-                new Book("Кобзар","Тарас Шевченко", GenerateBookContent(3)),
+            [          
+                new Book("Кобзар","Тарас Шевченко", pagesForKobzar),
                 new Book("Лісова пісня","Леся Українка", GenerateBookContent(3)),
                 new Book("Маленький принц","Антуан де Сент-Екзюпері", GenerateBookContent(3)),
                 // Поліморфізм - неявний up cast до базового класу Book
@@ -24,7 +26,7 @@ namespace MyExtraHomeWorks
                 }
             ];
 
-            var library = new MyLibrary(books); // Робимо екземпеляр класу MyLibrary, в якості аргументу передаємо змінну book  
+            var library = new MyLibrary(books); // Робимо екземпеляр класу MyLibrary, в якості аргументу передаємо змінну books 
 
             while (true)
             {
@@ -59,7 +61,7 @@ namespace MyExtraHomeWorks
 
                                 if (found is BookWithImages bookWithImages)
                                 {
-                                    var pageWithImages = (PageWithImages)bookWithImages.CurrentPage;
+                                    PageWithImages pageWithImages = (PageWithImages)bookWithImages.CurrentPage;
                                     Console.WriteLine(pageWithImages.Image);
                                 }
                                 break;
@@ -102,49 +104,49 @@ namespace MyExtraHomeWorks
         {
 
             Page[] pages = new Page[pageCount];
-            string result;   
+            string text;   
             string[] words = ["Привіт", "справи", "ти", "бувай", "забув", "може", "яблуко", "якщо", "шість", "козак"];
-            Random randomizer = new Random();
+            Random randomizer = new Random(); //Method random for future content in pages
 
-            for (int i = 0; i < pageCount; i++)
+            for (int i = 0; i < pageCount; i++) //Filling pages
             {
-                result = string.Empty;
+                text = string.Empty;
 
-                for (int j = 0; j < 10 ; j++)
+                for (int j = 0; j < 3 ; j++)
                 {
-                    int index = randomizer.Next(0, words.Length - 1);
-                    result += words[index] + " ";
+                    int index = randomizer.Next(0, words.Length - 1); //Індекс дорівнює рандомному єлементу масива від 0 до 9,викликаємо метод і отримуємо рандомне число
+                    text += words[index] + " ";  //В результат записуємо 3 рандомних слова
                 }
 
-                pages[i] = new Page(result, i + 1); 
+                pages[i] = new Page(text, i + 1); //Передаємо в клас Пейдж результат з трьох слів та номер сторінки
             }
 
-            return pages;
+            return pages; //Повертаємо усі сторінки з контентом в користувальницький конструктор класу Воок
         }
 
         public static PageWithImages[] GenerateBookContentWithImages(int pageCount)
         {
 
             PageWithImages[] pages = new PageWithImages[pageCount];
-            string result;
+            string text;
             string[] words = ["Привіт", "справи", "ти", "бувай", "забув", "може", "яблуко", "якщо", "шість", "козак"];
             string[] images = ["Cat", "Cloud", "Rain", "Snow", "Fisher", "Bastion", "Door", "Cup", "House", "Tea"];
             Random randomizer = new Random();
 
             for (int i = 0; i < pageCount; i++)
             {
-                result = string.Empty;
+                text = string.Empty;
 
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     int index = randomizer.Next(0, words.Length - 1);
-                    result += words[index] + " ";
+                    text += words[index] + " ";
                 }
 
                 int imageIndex = randomizer.Next(-1, images.Length - 1);
                 string image = (imageIndex == -1) ? null : images[imageIndex];
 
-                pages[i] = new PageWithImages(result, i + 1, image);
+                pages[i] = new PageWithImages(text, i  + 1, image);
             }
 
             return pages;

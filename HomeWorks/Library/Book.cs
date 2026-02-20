@@ -6,7 +6,7 @@ namespace MyExtraHomeWorks
     class Book(string name, string author, Page[] pages)
     {
 
-        protected Page[] pages = pages;
+        protected Page[] pages = pages;  //Приймаємо усю інформацію про книгу та контент книги
         protected int currentPageNumber = 0;
          // поле-внутрішня змінна для відстеження поточної сторінки 
 
