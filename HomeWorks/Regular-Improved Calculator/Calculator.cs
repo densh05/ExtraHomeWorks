@@ -1,4 +1,4 @@
-﻿namespace Regular_Improved_Calculator
+﻿namespace Calculator
 {
     public class Calculator
     {
@@ -20,7 +20,6 @@
         {
             if (b == 0)
             {
-                Console.WriteLine("Error");
                 return 0;
             }
 

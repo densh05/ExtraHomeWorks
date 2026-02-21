@@ -1,13 +1,13 @@
-﻿namespace Regular_Improved_Calculator
+﻿namespace Calculator
 {
-     class CalculatorPro : Calculator
+     public class CalculatorPro : Calculator
     {
-        public static double SquareRoot(double a)
+        public double SquareRoot(double a)
         {
             return Math.Sqrt(a);
         }
 
-        public static double Pow(double a, double x)
+        public double Pow(double a, double x)
         {
             double result = 1;
 

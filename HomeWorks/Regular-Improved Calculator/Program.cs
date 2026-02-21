@@ -1,21 +1,17 @@
-﻿using Regular_Improved_Calculator;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Calculator;
+using System.Runtime.ExceptionServices;
 class Program
 {
 
     static void Main()
     {
-        Calculator calculator = new CalculatorPro();
+        Calculator.Calculator calculator = new CalculatorPro();
 
         int attempts = 3;
         string key = "111";
-
         while (true) 
         {
-
-            Console.WriteLine("Hi,choose ur operation");
+            Console.WriteLine("Hi, choose ur operation");
             Console.WriteLine("0 Break");
             Console.WriteLine("1 Addition");
             Console.WriteLine("2 Subtract");
@@ -24,69 +20,105 @@ class Program
             Console.WriteLine("5 Sqrt");
             Console.WriteLine("6 Pow");
 
-            int choice = Convert.ToInt32(Console.ReadLine());
-
-            if (choice == 0) break;
+            string choice = Console.ReadLine();
 
             double a, b;
 
-            if (choice >= 1 && choice <= 4)
+            //Console.WriteLine("First number:");
+            //a = Convert.ToDouble(Console.ReadLine());
+            //Console.WriteLine("Second number:");
+            //b = Convert.ToDouble(Console.ReadLine());
+
+
+            switch (choice)
             {
-                
+                case "1":
                     Console.WriteLine("First number:");
                     a = Convert.ToDouble(Console.ReadLine());
-
                     Console.WriteLine("Second number:");
                     b = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine(Calculator.Calculator.Addition(a, b));
+                    break;
+                case "2":
+                    Console.WriteLine("First number:");
+                    a = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Second number:");
+                    b = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine(Calculator.Calculator.Subtract(a, b));
+                    break;
+                case "3":
+                    Console.WriteLine("First number:");
+                    a = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Second number:");
+                    b = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine(Calculator.Calculator.Multiply(a, b));
+                    break;
+                case "4":
+                    Console.WriteLine("First number:");
+                    a = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Second number:");
+                    b = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine(Calculator.Calculator.Divide(a, b));
+                    break;
 
-                    if (choice == 1) Console.WriteLine(Calculator.Addition(a, b));
-                    if (choice == 2) Console.WriteLine(Calculator.Subtract(a, b));
-                    if (choice == 3) Console.WriteLine(Calculator.Multiply(a, b));
-                    if (choice == 4) Console.WriteLine(Calculator.Divide(a, b));
-            }
-
-            else if (choice == 5 || choice == 6)
-            {
-                CalculatorPro calculatorPro = (CalculatorPro)calculator;
-
-                if (attempts > 0)
-                {
-                    if (choice == 5)
+                case "5":
+                    if(attempts > 0)
                     {
-                        Console.WriteLine("Square root calculation");
-                        a = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine(CalculatorPro.SquareRoot(a));
-                    }
-                    else
-                    {
-                        Console.WriteLine("Number to be raised to a power:");
                         Console.WriteLine("First number:");
                         a = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Second number:");
-                        b = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine(CalculatorPro.Pow(a, b));
-
-                    }
-                    attempts--;
-                }
-                else 
-                {
-                    Console.WriteLine("Enter the key if u want to get PRO access");
-                    string result = Console.ReadLine();
-
-                    if (result == key)
-                    {
-                        calculator = new CalculatorPro();
-                        attempts = 3;
-                        Console.WriteLine("Activated");
+                        CalculatorPro calculatorPro = (CalculatorPro)calculator;
+                        Console.WriteLine(calculatorPro.SquareRoot(a));
+                        attempts--;
                     }
                     else
                     {
-                        Console.WriteLine("Wrong key");
+                        Console.WriteLine("Attempts are over,enter the access key:");
+                        var accessKey = Console.ReadLine(); 
+                        if(accessKey == key)
+                        {
+                            Console.WriteLine("Access granted!");
+                            attempts = 3;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Input errot");
+                        }
                     }
-                }
-            } 
+                    break;
+                    
+                case "6":
+                    if(attempts > 0)
+                    {
+                        Console.WriteLine("First number:");
+                        a = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Second number:");
+                        b = Convert.ToDouble(Console.ReadLine());
+                        CalculatorPro calculatorPro = (CalculatorPro)calculator;
+                        Console.WriteLine(calculatorPro.Pow(a, b));
+                        attempts--;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Attempts are over,enter the access key:");
+                        var accessKey = Console.ReadLine();
+                        if (accessKey == key)
+                        {
+                            Console.WriteLine("Access granted!");
+                            attempts = 3;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Input errot");
+                        }
+                    }
+                   
+                    break;
+
+                default:
+                    Console.WriteLine("Unknown error");
+                    break;
+
+            }           
         }
 
     }
