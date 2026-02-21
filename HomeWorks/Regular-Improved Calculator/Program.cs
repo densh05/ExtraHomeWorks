@@ -24,12 +24,6 @@ class Program
 
             double a, b;
 
-            //Console.WriteLine("First number:");
-            //a = Convert.ToDouble(Console.ReadLine());
-            //Console.WriteLine("Second number:");
-            //b = Convert.ToDouble(Console.ReadLine());
-
-
             switch (choice)
             {
                 case "1":
@@ -120,6 +114,5 @@ class Program
 
             }           
         }
-
     }
 }
