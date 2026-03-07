@@ -37,22 +37,22 @@ class Program
                 case "1":
                     a = RequestOperand("Input first oerand");
                     b = RequestOperand("Second number: ");
-                    result = Calculator.CalculatorOrdinary.Addition(a, b);
+                    result = CalculatorOrdinary.Addition(a, b);
                     break;
                 case "2":
                     a = RequestOperand("Input first oerand");
                     b = RequestOperand("Second number: ");
-                    result = Calculator.CalculatorOrdinary.Subtract(a, b);
+                    result = CalculatorOrdinary.Subtract(a, b);
                     break;
                 case "3":
                     a = RequestOperand("Input first oerand");
                     b = RequestOperand("Second number: ");
-                    result = Calculator.CalculatorOrdinary.Multiply(a, b);
+                    result = CalculatorOrdinary.Multiply(a, b);
                     break;
                 case "4":
                     a = RequestOperand("Input first oerand");
                     b = RequestOperand("Second number: ");
-                    result = Calculator.CalculatorOrdinary.Divide(a, b, out error);
+                    result = CalculatorOrdinary.Divide(a, b, out error);
                     break;
 
                 case "5":
