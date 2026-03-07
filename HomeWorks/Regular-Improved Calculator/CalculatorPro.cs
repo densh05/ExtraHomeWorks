@@ -1,6 +1,6 @@
 ﻿namespace Calculator
 {
-     public class CalculatorPro : Calculator
+     public class CalculatorPro : CalculatorOrdinary
     {
         public double SquareRoot(double a)
         {

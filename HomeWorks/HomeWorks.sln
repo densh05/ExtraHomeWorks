@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Regular-Improved Calculator\Calculator.csproj", "{38F5D342-BD7C-4A85-AE0B-4C43FE26D16E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticAndNestedClass", "SingleTon\StaticAndNestedClass.csproj", "{8EE4C91E-0C93-4D86-AAC6-984D1EA22637}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{38F5D342-BD7C-4A85-AE0B-4C43FE26D16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38F5D342-BD7C-4A85-AE0B-4C43FE26D16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38F5D342-BD7C-4A85-AE0B-4C43FE26D16E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EE4C91E-0C93-4D86-AAC6-984D1EA22637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EE4C91E-0C93-4D86-AAC6-984D1EA22637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EE4C91E-0C93-4D86-AAC6-984D1EA22637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EE4C91E-0C93-4D86-AAC6-984D1EA22637}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
