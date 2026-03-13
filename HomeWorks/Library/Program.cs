@@ -1,5 +1,6 @@
 ﻿using Library;
 using System;
+using System.Collections;
 using System.Text;
 
 namespace MyExtraHomeWorks
@@ -10,6 +11,34 @@ namespace MyExtraHomeWorks
         {
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
+
+            //====================================================================
+
+            var book15 = new Book("Shutter Island", "Lem", GenerateBookContent(5));
+
+            foreach (Page page in book15)
+            {
+                Console.WriteLine($"Number of page={page.Number}");
+                Console.WriteLine(page.Text);
+            }
+
+            foreach (Page page in book15)
+            {
+                Console.WriteLine($"Number of page={page.Number}");
+                Console.WriteLine(page.Text);
+            }
+
+            // foreach
+            IEnumerator enumerator = book15.GetEnumerator();    
+            while (enumerator.MoveNext())
+            {
+                Page page = (Page)enumerator.Current;
+                Console.WriteLine($"Number of page={page.Number}");
+                Console.WriteLine(page.Text);
+            }
+
+            //====================================================================
+
 
             Page[] pagesForKobzar = GenerateBookContent(3);
 
@@ -56,12 +85,12 @@ namespace MyExtraHomeWorks
                         switch (choice)
                         {
                             case "1":
-                                Console.WriteLine($"Сторінка номер {found.CurrentPage.Number}");
-                                Console.WriteLine(found.CurrentPage.Text);
+                                Console.WriteLine($"Сторінка номер {((Page)found.Current).Number}");
+                                Console.WriteLine(((Page)found.Current).Text);
 
                                 if (found is BookWithImages bookWithImages)
                                 {
-                                    PageWithImages pageWithImages = (PageWithImages)bookWithImages.CurrentPage;
+                                    PageWithImages pageWithImages = (PageWithImages)bookWithImages.Current;
                                     Console.WriteLine(pageWithImages.Image);
                                 }
                                 break;

@@ -1,11 +1,11 @@
 ﻿using Library;
+using System.Collections;
 using System.Text;
 
 namespace MyExtraHomeWorks
 {
-    class Book(string name, string author, Page[] pages)
+    class Book(string name, string author, Page[] pages): IEnumerator, IEnumerable
     {
-
         protected Page[] pages = pages;  //Приймаємо усю інформацію про книгу та контент книги
         protected int currentPageNumber = 0;
          // поле-внутрішня змінна для відстеження поточної сторінки 
@@ -27,13 +27,9 @@ namespace MyExtraHomeWorks
             }
         }
 
-        public Page CurrentPage
-        {
-            get
-            {
-                return this[currentPageNumber];
-            }
-        }
+        #region IEnumerator implementation
+
+        public object Current => this[currentPageNumber];      
 
         public virtual bool MoveNext()
         {
@@ -43,6 +39,7 @@ namespace MyExtraHomeWorks
                 return true;
             }
 
+            Reset();
             return false;
         }
 
@@ -50,6 +47,7 @@ namespace MyExtraHomeWorks
         {
             currentPageNumber = 0;
         }
+        #endregion
 
         public virtual string Open()
         {
@@ -59,5 +57,14 @@ namespace MyExtraHomeWorks
 
             return result;
         }
-     }  
+
+        #region IEnumerable implementation
+
+        public IEnumerator GetEnumerator()
+        {
+            return this;
+        }
+
+        #endregion
+    }
 }
