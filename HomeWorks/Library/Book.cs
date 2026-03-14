@@ -1,34 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Library;
 using System.Text;
 
 namespace MyExtraHomeWorks
 {
-    internal class Book
+    class Book(string name, string author, Page[] pages)
     {
-        private string name;
-        private string author;
-        private int pages;
 
-        public Book(string name, string author, int pages)
+        protected Page[] pages = pages;  //Приймаємо усю інформацію про книгу та контент книги
+        protected int currentPageNumber = 0;
+         // поле-внутрішня змінна для відстеження поточної сторінки 
+
+        public string Name { get; } = name;
+        public string Author { get; } = author;
+        public int PageCount { get; } = pages.Length;
+        public Page this[int number]
         {
-            this.name = name;
-            this.author = author;
-            this.pages = pages;
+            get
+            {
+                for (int i = 0; i < pages.Length; i++)
+                {
+                    if (pages[i].Number == number)
+                    return pages[i];
+                }
+
+                return null; 
+            }
         }
 
-        public string Name {  get { return name; } }
-        public string Author { get { return author; } }
-        public int Pages { get { return pages;} }
-
-        public void ShowInfo()
+        public Page CurrentPage
         {
-            Console.WriteLine("Назва книги" + name);
-            Console.WriteLine("Автор книги" + author);
-            Console.WriteLine("Кількість сторінок" + pages);
+            get
+            {
+                return this[currentPageNumber];
+            }
         }
-    }
 
+        public virtual bool MoveNext()
+        {
+            if (currentPageNumber < PageCount)
+            {
+                currentPageNumber++;
+                return true;
+            }
 
-    
+            return false;
+        }
+
+        public void Reset()
+        {
+            currentPageNumber = 0;
+        }
+
+        public virtual string Open()
+        {
+            string result = @$"Назва книги  {Name} 
+Автор книги {Author}
+Кількість сторінок {PageCount}";
+
+            return result;
+        }
+     }  
 }
