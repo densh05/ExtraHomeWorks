@@ -1,4 +1,4 @@
-﻿ namespace Calculator
+﻿namespace Calculator
 {
      public class CalculatorPro : CalculatorOrdinary
     {

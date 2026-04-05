@@ -6,9 +6,17 @@ namespace Enum
 {
     struct MyTask
     {
-        public int Id { get; set; }
-        public DateTime CreationDate { get; set; }
+        public Guid Id { get; private set; }
+        public DateTime CreationDate { get; } 
         public string Description { get; set; }
         public ProgressType Status { get; set; }
+
+        public MyTask()
+        {
+            Id = Guid.NewGuid();
+            CreationDate = DateTime.Now;
+        }
+
+        
     }
 }
