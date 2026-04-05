@@ -17,6 +17,5 @@ namespace Enum
             CreationDate = DateTime.Now;
         }
 
-        
     }
 }
