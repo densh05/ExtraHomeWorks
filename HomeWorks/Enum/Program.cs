@@ -30,7 +30,7 @@ class Program
                     break;
 
             }
-            Console.WriteLine($"Task ID: {task.Id}, Description: {task.Description}, Status: {task.Status}");
+            Console.WriteLine($"Task ID: {task.Id},Time: {task.CreationDate}, Description: {task.Description}, Status: {task.Status}");
         }
 
         Console.ResetColor();
