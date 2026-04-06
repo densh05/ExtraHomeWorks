@@ -13,6 +13,9 @@ namespace MyExtraHomeWorks
 
             Page[] pagesForKobzar = GenerateBookContent(3);
 
+           
+
+
             Book[] books =  //Записуємо в користувальницький конструктор классу Воок значення для полів
             [          
                 new Book("Кобзар","Тарас Шевченко", pagesForKobzar),
@@ -25,6 +28,13 @@ namespace MyExtraHomeWorks
                     TitleImage = "C# Logo"
                 }
             ];
+
+
+            foreach (Page p in books[0])
+            {
+                Console.WriteLine($"Сторінка номер {p.Number}");
+                Console.WriteLine(p.Text);
+            }
 
             var library = new MyLibrary(books); // Робимо екземпеляр класу MyLibrary, в якості аргументу передаємо змінну books 
 
