@@ -1,10 +1,11 @@
 ﻿using Library;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MyExtraHomeWorks
 {
-    class Book(string name, string author, Page[] pages): IEnumerator, IEnumerable
+    class Book(string name, string author, Page[] pages): IEnumerator<Page>, IEnumerable<Page>
     {
         protected Page[] pages = pages;  //Приймаємо усю інформацію про книгу та контент книги
         protected int currentPageNumber = 0;
@@ -29,7 +30,9 @@ namespace MyExtraHomeWorks
 
         #region IEnumerator implementation
 
-        public object Current => this[currentPageNumber];      
+        object IEnumerator.Current => this[currentPageNumber];
+ 
+        public Page Current => this[currentPageNumber];
 
         public virtual bool MoveNext()
         {
@@ -39,7 +42,6 @@ namespace MyExtraHomeWorks
                 return true;
             }
 
-            Reset();
             return false;
         }
 
@@ -60,10 +62,22 @@ namespace MyExtraHomeWorks
 
         #region IEnumerable implementation
 
-        public IEnumerator GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return this;
         }
+
+        public IEnumerator<Page> GetEnumerator()
+        {
+            return this;
+        }
+
+        public void Dispose()
+        {
+            Reset();
+        }
+
+        
 
         #endregion
     }

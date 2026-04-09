@@ -1,6 +1,7 @@
 ﻿using Library;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MyExtraHomeWorks
@@ -29,10 +30,10 @@ namespace MyExtraHomeWorks
             }
 
             // foreach
-            IEnumerator enumerator = book15.GetEnumerator();    
+            IEnumerator<Page> enumerator = book15.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                Page page = (Page)enumerator.Current;
+                Page page = enumerator.Current;
                 Console.WriteLine($"Number of page={page.Number}");
                 Console.WriteLine(page.Text);
             }
