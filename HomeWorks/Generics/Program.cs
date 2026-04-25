@@ -6,9 +6,10 @@ class Program
     static void Main()
     {
         Console.OutputEncoding = Encoding.Unicode;
+        Console.InputEncoding = Encoding.Unicode;
 
-        int[] array = { -5, 3, -2, 7, -1, 0, 4, -12, 5 };
-        int[] result = NegativeArray.LessThanZero(array);
+        int[] array = [-5, 3, -2, 7, -1, 0, 4, -12, 5];
+        IEnumerable<int> result = array.LessThanZero();
         foreach(int num in result)
         {
             Console.WriteLine(num);
@@ -16,33 +17,31 @@ class Program
 
         Console.WriteLine(new string('-', 40));
 
-        Dictionary<string, string> dict = new Dictionary<string, string>();
+        Dictionary<string, string> dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Яблуко", "Apple" },
+            { "Авто", "Car"},
+            { "Дівчина", "Girl" },
+            { "Дім", "House" },
+            { "Кінь", "Horse" },
+            { "Книга", "Book" },
+            { "Документ", "Document" },
+            { "Ключ", "Key" },
+            { "Бібліотека", "Library" },
+            { "Ліжко", "Bed"}
+        };
 
-        dict.Add("Яблуко", "Apple");
-        dict.Add("Авто", "Car");
-        dict.Add("Дівчина", "Girl");
-        dict.Add("Дім", "House");
-        dict.Add("Кінь", "Horse");
-        dict.Add("Книга", "Book");
-        dict.Add("Документ", "Document");
-        dict.Add("Ключ", "Key");
-        dict.Add("Бібліотека", "Library");
-        dict.Add("Ліжко", "Bed");
+
 
         while (true)
         {
-            Console.WriteLine("Hi,write the word u want to translate");
-            string word = Console.ReadLine();
+            Console.WriteLine("Привіт,напиши слово на українській для перекладу");
+            string keyWord = Console.ReadLine();
 
-            if (word != null && dict.ContainsValue(word))
+            if (keyWord != null && dict.ContainsKey(keyWord))
             {
-                foreach (var item in dict)
-                {
-                    if (item.Value == word)
-                    {
-                        Console.WriteLine($"The translation of {word} is {item.Key}");
-                    }
-                }
+                string translation = dict[keyWord];
+                Console.WriteLine($"Переклад слова {keyWord} це {translation}");   
             }
             else
             {

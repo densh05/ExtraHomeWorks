@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Generics
 {
-    class NegativeArray
+    public static class ArrayExtensions
     {
-        public static int[] LessThanZero(int[] array)
+        public static IEnumerable<int> LessThanZero(this int[] array)
         {
             List<int> negativeNumbers = new List<int>();
 
@@ -17,7 +17,7 @@ namespace Generics
                     negativeNumbers.Add(number);
                 }
             }
-            return negativeNumbers.ToArray();
+             return negativeNumbers;
         }
     }
 }
