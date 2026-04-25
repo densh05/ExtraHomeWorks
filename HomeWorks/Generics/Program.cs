@@ -31,8 +31,6 @@ class Program
             { "Ліжко", "Bed"}
         };
 
-
-
         while (true)
         {
             Console.WriteLine("Привіт,напиши слово на українській для перекладу");
