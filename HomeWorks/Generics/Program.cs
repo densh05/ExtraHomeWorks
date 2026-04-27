@@ -17,7 +17,7 @@ class Program
 
         Console.WriteLine(new string('-', 40));
 
-        Dictionary<string, string> dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        Dictionary<string, string> dict = new Dictionary<string, string>()
         {
             { "Яблуко", "Apple" },
             { "Авто", "Car"},
@@ -36,7 +36,7 @@ class Program
             Console.WriteLine("Привіт,напиши слово на українській для перекладу");
             string keyWord = Console.ReadLine();
 
-            if (keyWord != null && dict.ContainsKey(keyWord))
+            if (dict.ContainsKey(keyWord))
             {
                 string translation = dict[keyWord];
                 Console.WriteLine($"Переклад слова {keyWord} це {translation}");   
