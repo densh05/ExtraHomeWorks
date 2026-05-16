@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enum", "Enum\Enum.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generics", "Generics\Generics.csproj", "{0EFAA360-3466-4243-9A14-E92537AD7A1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factory", "Factory\Factory.csproj", "{5262CDE3-D422-4A1D-92C7-58C32C238132}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0EFAA360-3466-4243-9A14-E92537AD7A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EFAA360-3466-4243-9A14-E92537AD7A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EFAA360-3466-4243-9A14-E92537AD7A1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5262CDE3-D422-4A1D-92C7-58C32C238132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5262CDE3-D422-4A1D-92C7-58C32C238132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5262CDE3-D422-4A1D-92C7-58C32C238132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5262CDE3-D422-4A1D-92C7-58C32C238132}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
