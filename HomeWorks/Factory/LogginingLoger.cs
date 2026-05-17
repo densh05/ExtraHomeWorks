@@ -6,7 +6,7 @@ namespace Factory
 {
     static class LogginingLoger<T> where T : Employee
     {
-       private static Dictionary<Employee, List<DateTime>> entrance = [];
+       private static Dictionary<T, List<DateTime>> entrance = [];
 
         public static void Log(T someone)
         {
@@ -28,7 +28,6 @@ namespace Factory
             }
 
             var result = entrance[who];
-
             result.Sort();
 
             return result;

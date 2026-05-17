@@ -56,20 +56,9 @@ class Program
         var logs2 = LogginingLoger<Manager>.GetAllLogsBy(manager);
         var logs3 = LogginingLoger<Engineer>.GetAllLogsBy(engineer);
 
-        foreach (var log in logs1)
-        {
-            Console.WriteLine(log);
-        }
-
-        foreach (var log in logs2)
-        {
-            Console.WriteLine(log);
-        }
-
-        foreach (var log in logs3)
-        {
-            Console.WriteLine(log);
-        }
+        logs1.DisplayCollectionOnConsole();
+        logs2.DisplayCollectionOnConsole();
+        logs3.DisplayCollectionOnConsole();
 
     }
 }
