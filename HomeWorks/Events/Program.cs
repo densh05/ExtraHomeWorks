@@ -5,11 +5,11 @@ class Program
 
     private static void OnCurrencyRateChanged(object sender, EventArgs e)
     {
-        var args = e as EventRateArgs; 
+        //var args = e as EventRateArgs; 
 
-        var euro = args?.EurRate;
+        //var euro = args?.EurRate;
 
-        Console.WriteLine(euro);
+        //Console.WriteLine(euro);
 
         var currencies = CurrencyRates.GetCurrentRates();
         foreach (var currency in currencies)
