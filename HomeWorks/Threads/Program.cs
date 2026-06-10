@@ -52,10 +52,7 @@ class Program
 
         for (int i = 5; i <= 10; i++)
         {
-            //lock (locker)
-            {
-                new Thread(CalculateFactorialAndDisplay).Start(i); //Start second thread
-            }
+            new Thread(CalculateFactorialAndDisplay).Start(i); //Start secondary thread
         }
 
         CalculateFactorialAndDisplay(25); //Start primary thread 
