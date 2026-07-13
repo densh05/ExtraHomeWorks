@@ -26,10 +26,11 @@ namespace ObjectOperators
 
         public override bool Equals(object? obj)
         {
-            if(obj is Number other)
+            if (obj is Number other)
             {
-                return this.Value == other.Value;
+                return this == other;
             }
+
             return false;
         }
 
