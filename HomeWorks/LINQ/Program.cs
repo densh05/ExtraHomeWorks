@@ -20,6 +20,13 @@ class Program
     {
         return cats
             .Where(c => c.Price <= maxPrice)
+            .Select(c => new Cat
+            {
+                Name = c.Name,
+                Weight = c.Weight,
+                Price = c.Price,
+                Age = c.Age
+            })
             .ToList();
     }
 
