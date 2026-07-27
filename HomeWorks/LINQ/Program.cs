@@ -34,11 +34,6 @@ class Program
             .ToList();
     }
 
-    //static List<IGrouping<Breed, Cat>> GetCatsGroupedByBreed(IEnumerable<Cat> breedGroup)
-    //{
-    //    return breedGroup.GroupBy(c => c.Breed).ToList();
-    //}
-
     static List<dynamic> GetCatsGroupedByColorAndBreed(IEnumerable<Cat> colorGroup)
     {
         return colorGroup
@@ -204,17 +199,6 @@ class Program
         priceCats.ForEach(c => Console.WriteLine($"Name: {c.Name}, Age: {c.Age}, Weight: {c.Weight}, Price: {c.Price}"));
 
         Console.WriteLine(new string('-', 50));
-
-        //var groupsCats = GetCatsGroupedByBreed(cats);
-        //foreach (var group in groupsCats)
-        //{
-        //    Console.WriteLine($"Breed: {group.Key}");
-        //    foreach (var cat in group)
-        //    {
-        //        Console.WriteLine($"  Name: {cat.Name}, Age: {cat.Age}");
-        //    }
-        //    Console.WriteLine(new string('-', 50));
-        //}
 
         var colorGroups = GetCatsGroupedByColorAndBreed(cats);
         foreach (var group in colorGroups)
