@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LINQ
 {
-    enum BreedType
+    enum Breed
     {
         Persian,
         MaineCoon,

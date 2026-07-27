@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LINQ
 {
-    enum ColorType
+    enum Color
     {
         Black,
         White,

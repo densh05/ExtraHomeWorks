@@ -5,50 +5,64 @@ class Program
     static List<Cat> GetOldBlackMansCats(IEnumerable<Cat> cats)
     {
         return cats
-            .Where(c => c.Age > 10 && c.Color == ColorType.Black && c.Sex == SexType.Male)
+            .Where(c => c.Age > 10 && c.Color == Color.Black && c.Sex == SexType.Male)
             .ToList();
     }
 
     static List<Cat> GetYoungCats(IEnumerable<Cat> cats)
     {
         return cats
-            .Where(c => c.Age < 10 && (c.Breed == BreedType.Persian || c.Weight < 10))
+            .Where(c => c.Age < 10 && (c.Breed == Breed.Persian || c.Weight < 10))
+            .OrderBy(c => c.Age)
+            .ThenBy(c => c.Weight)
             .ToList();
     }
 
-    static List<Cat> GetCatsMoney(IEnumerable<Cat> cats, decimal maxPrice)
+    static List<dynamic> GetCatsCost(IEnumerable<Cat> cats, decimal maxPrice)
     {
         return cats
             .Where(c => c.Price <= maxPrice)
-            .Select(c => new Cat
-            {
+            .OrderByDescending(c => c.Age)
+            .Select(c => new
+            { 
                 Name = c.Name,
                 Weight = c.Weight,
                 Price = c.Price,
                 Age = c.Age
             })
+            .Cast<dynamic>()
             .ToList();
     }
 
-    static List<IGrouping<BreedType, Cat>> GetCatsGroupedByBreed(IEnumerable<Cat> breedGroup)
+    //static List<IGrouping<Breed, Cat>> GetCatsGroupedByBreed(IEnumerable<Cat> breedGroup)
+    //{
+    //    return breedGroup.GroupBy(c => c.Breed).ToList();
+    //}
+
+    static List<dynamic> GetCatsGroupedByColorAndBreed(IEnumerable<Cat> colorGroup)
     {
-        return breedGroup.GroupBy(c => c.Breed).ToList();
+        return colorGroup
+            .GroupBy(c => new
+        {
+            c.Color,
+            c.Breed
+        })
+            .Select(g => new
+            {
+                Color = g.Key.Color,
+                Breed = g.Key.Breed,
+                Cats = g.ToList()
+            })
+            .Cast<dynamic>()
+            .ToList();
     }
 
-    static List<IGrouping<ColorType, Cat>> GetCatsGroupedByColor(IEnumerable<Cat> colorGroup)
-    {
-        return colorGroup.GroupBy(c => c.Color).ToList();
-    }
-
-    static void GetAllInformation(IEnumerable<Cat> cats)
+    static (int Max, int Min, decimal Average) GetAllInformation(IEnumerable<Cat> cats)
     {
         int maxAge = cats.Max(c => c.Age);
         int minWeight = cats.Min(c => c.Weight);
         decimal averagePrice = cats.Average(c => c.Price);
-
-        Console.WriteLine($"Max Age: {maxAge}");
-        Console.WriteLine($"Min Weight: {minWeight}");
-        Console.WriteLine($"Average Price: {averagePrice}");
+        return (maxAge, minWeight, averagePrice);
     }
 
     static Dictionary<string, int> GetCatsCountByBreed(IEnumerable<Cat> cats)
@@ -59,8 +73,6 @@ class Program
             .ToDictionary(g => g.Key.ToString(), g => g.Count());
     }
 
-
-
     static void Main()
     {
         var cats = new List<Cat>
@@ -70,8 +82,8 @@ class Program
                 Id = 1,
                 Name = "Maluyk",
                 Weight = 10,
-                Color = ColorType.White,
-                Breed = BreedType.Persian,
+                Color = Color.White,
+                Breed = Breed.Persian,
                 Price = 100,
                 Sex = SexType.Female,
                 Age = 2
@@ -81,8 +93,8 @@ class Program
                 Id = 2,
                 Name = "Murka",
                 Weight = 12,
-                Color = ColorType.Black,
-                Breed = BreedType.MaineCoon,
+                Color = Color.Black,
+                Breed = Breed.MaineCoon,
                 Price = 200,
                 Sex = SexType.Female,
                 Age = 7
@@ -92,8 +104,8 @@ class Program
                 Id = 3,
                 Name = "Barsik",
                 Weight = 8,
-                Color = ColorType.Gray,
-                Breed = BreedType.Ragdoll,
+                Color = Color.Gray,
+                Breed = Breed.Ragdoll,
                 Price = 90,
                 Sex = SexType.Male,
                 Age = 13
@@ -103,8 +115,8 @@ class Program
                 Id = 4,
                 Name = "Vaska",
                 Weight = 9,
-                Color = ColorType.Black,
-                Breed = BreedType.Persian,
+                Color = Color.Black,
+                Breed = Breed.Persian,
                 Price = 120,
                 Sex = SexType.Male,
                 Age = 10
@@ -114,8 +126,8 @@ class Program
                 Id = 5,
                 Name = "Bonia",
                 Weight = 11,
-                Color = ColorType.White,
-                Breed = BreedType.MaineCoon,
+                Color = Color.White,
+                Breed = Breed.MaineCoon,
                 Price = 180,
                 Sex = SexType.Female,
                 Age= 3
@@ -125,8 +137,8 @@ class Program
                 Id = 6,
                 Name = "Masik",
                 Weight = 7,
-                Color = ColorType.Gray,
-                Breed = BreedType.Ragdoll,
+                Color = Color.Gray,
+                Breed = Breed.Ragdoll,
                 Price = 60,
                 Sex = SexType.Male,
                 Age = 9
@@ -136,8 +148,8 @@ class Program
                 Id = 7,
                 Name = "Ron",
                 Weight = 13,
-                Color = ColorType.Black,
-                Breed = BreedType.MaineCoon,
+                Color = Color.Black,
+                Breed = Breed.MaineCoon,
                 Price = 220,
                 Sex = SexType.Female,
                 Age = 10
@@ -147,8 +159,8 @@ class Program
                 Id = 8,
                 Name = "Luna",
                 Weight = 14,
-                Color = ColorType.White,
-                Breed = BreedType.Persian,
+                Color = Color.White,
+                Breed = Breed.Persian,
                 Price = 130,
                 Sex = SexType.Female,
                 Age = 4
@@ -158,8 +170,8 @@ class Program
                 Id = 9,
                 Name = "Simba",
                 Weight = 15,
-                Color = ColorType.Gray,
-                Breed = BreedType.Ragdoll,
+                Color = Color.Gray,
+                Breed = Breed.Ragdoll,
                 Price = 70,
                 Sex = SexType.Male,
                 Age = 3
@@ -169,8 +181,8 @@ class Program
                 Id = 10,
                 Name = "Milo",
                 Weight = 16,
-                Color = ColorType.Black,
-                Breed = BreedType.MaineCoon,
+                Color = Color.Black,
+                Breed = Breed.MaineCoon,
                 Price = 190,
                 Sex = SexType.Male,
                 Age = 14
@@ -188,34 +200,38 @@ class Program
 
         Console.WriteLine(new string('-', 50));
 
-        var priceCats = GetCatsMoney(cats, 100);
+        var priceCats = GetCatsCost(cats, 100);
         priceCats.ForEach(c => Console.WriteLine($"Name: {c.Name}, Age: {c.Age}, Weight: {c.Weight}, Price: {c.Price}"));
 
         Console.WriteLine(new string('-', 50));
 
-        var groupsCats = GetCatsGroupedByBreed(cats);
-        foreach (var group in groupsCats)
-        {
-            Console.WriteLine($"Breed: {group.Key}");
-            foreach (var cat in group)
-            {
-                Console.WriteLine($"  Name: {cat.Name}, Age: {cat.Age}");
-            }
-            Console.WriteLine(new string('-', 50));
-        }
+        //var groupsCats = GetCatsGroupedByBreed(cats);
+        //foreach (var group in groupsCats)
+        //{
+        //    Console.WriteLine($"Breed: {group.Key}");
+        //    foreach (var cat in group)
+        //    {
+        //        Console.WriteLine($"  Name: {cat.Name}, Age: {cat.Age}");
+        //    }
+        //    Console.WriteLine(new string('-', 50));
+        //}
 
-        var colorGroups = GetCatsGroupedByColor(cats);
+        var colorGroups = GetCatsGroupedByColorAndBreed(cats);
         foreach (var group in colorGroups)
         {
-            Console.WriteLine($"Color: {group.Key}");
-            foreach (var cat in group)
+            Console.WriteLine($"Color: {group.Color}");
+            Console.WriteLine($"Breed: {group.Breed}");
+            foreach (var cat in group.Cats)
             {
                 Console.WriteLine($"  Name: {cat.Name}, Age: {cat.Age}");
             }
             Console.WriteLine(new string('-', 50));
         }
 
-        GetAllInformation(cats);
+        var info = GetAllInformation(cats);
+        Console.WriteLine($"Max Age: {info.Max}");
+        Console.WriteLine($"Min Weight: {info.Min}");
+        Console.WriteLine($"Average Price: {info.Average}");
 
         Console.WriteLine(new string('-', 50));
 
