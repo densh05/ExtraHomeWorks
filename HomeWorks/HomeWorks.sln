@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ", "LINQ\LINQ.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicType", "DynamicType\DynamicType.csproj", "{03268C82-A8DE-4DC4-99B6-25AE350268BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepositCalculator", "DepositCalculator\DepositCalculator.csproj", "{F0E9C9F7-FDEF-4BF8-9634-5666142F4E75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{03268C82-A8DE-4DC4-99B6-25AE350268BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03268C82-A8DE-4DC4-99B6-25AE350268BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03268C82-A8DE-4DC4-99B6-25AE350268BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0E9C9F7-FDEF-4BF8-9634-5666142F4E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0E9C9F7-FDEF-4BF8-9634-5666142F4E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0E9C9F7-FDEF-4BF8-9634-5666142F4E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0E9C9F7-FDEF-4BF8-9634-5666142F4E75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
