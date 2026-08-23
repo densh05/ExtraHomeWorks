@@ -11,6 +11,7 @@ namespace GlobalCalculator
         public double[] Recalculation(double[] values)
         {
             double[] result = new double[values.Length];
+
             for (int i = 0; i < values.Length; i++)
             {
                 if (values[i] < 0)

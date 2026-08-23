@@ -17,10 +17,10 @@
             Console.WriteLine($"Multiplying {a} and {b}");
             return MathHelper.Multiply(a, b);
         }
-        public static double Divide(double a, double d)
+        public static double Divide(double a, double b)
         {
-            Console.WriteLine($"Dividing {a} by {d}");
-            return MathHelper.Divide(a, d);
+            Console.WriteLine($"Dividing {a} by {b}");
+            return MathHelper.Divide(a, b);
         }
     }
 }

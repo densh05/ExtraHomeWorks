@@ -21,13 +21,13 @@ namespace ArithmeticOperations
             return a * b;
         }
 
-        public static double Divide(double a, double d)
+        public static double Divide(double a, double b)
         {
-            if (d == 0)
+            if (b == 0)
             {
                 throw new ArgumentException("Denominator cannot be zero!");
             }
-            return a / d;
+            return a / b;
         }
 
     }
