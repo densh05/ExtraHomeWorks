@@ -16,7 +16,7 @@
             return Math.Sqrt(value);
         }
 
-        public static double ChangeOfSign(double value)
+        protected static double ChangeOfSign(double value)
         {
             return -value;
         }
