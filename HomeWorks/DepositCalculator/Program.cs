@@ -38,7 +38,7 @@
 
             Console.WriteLine();
 
-            Console.WriteLine($"Average monthly income {sum:F2}");
+            Console.WriteLine($"Average monthly income {avg:F2}");
         }
     }
 }
