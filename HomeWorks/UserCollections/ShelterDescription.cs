@@ -9,13 +9,13 @@ namespace UserCollections
     class ShelterDescription (string address, string shelterName, int phoneNumber) : IEnumerable<Animal>, ICollection<Animal>, IList<Animal>
     {
         private Animal?[] animals = new Animal[10];
-        private int animalCount = -1;
+        private int animalCounter = -1;
 
         public string Address { get; init; } = address;
         public string ShelterName { get; init; } = shelterName;
         public int PhoneNumber { get; set; } = phoneNumber;
 
-        public int Count => animalCount + 1;
+        public int Count => animalCounter + 1;
 
         public bool IsReadOnly => false;
 
@@ -39,7 +39,7 @@ namespace UserCollections
 
         public IEnumerator<Animal> GetEnumerator()
         {
-            for (int i = 0; i < animalCount; i++)
+            for (int i = 0; i < Count; i++)
             {
                 if (animals[i] != null)
                     yield return animals[i];
@@ -49,7 +49,7 @@ namespace UserCollections
         private void ResizeArray()
         {
             Animal[] newAnimals = new Animal[animals.Length * 2];
-            for (int i = 0; i < animals.Length; i++)
+            for (int i = 0; i < Count; i++)
             {
                 newAnimals[i] = animals[i];
             }
@@ -59,18 +59,18 @@ namespace UserCollections
 
         public void Add(Animal animal)
         {
-            if (animalCount == animals.Length / 2)
+            if (Count == animals.Length / 2)
             {
                 ResizeArray();
             }
 
-            animals[++animalCount] = animal;
+            animals[++animalCounter] = animal;
         }
 
         public void Clear()
         {
             animals = new Animal[10];
-            animalCount = -1;
+            animalCounter = -1;
         }
 
         public bool Contains(Animal item)
@@ -82,12 +82,13 @@ namespace UserCollections
                     return true;
                 }
             }
+
             return false;
         }
 
         public void CopyTo(Animal[] array, int arrayIndex)
         {
-            for (int i = 0; i <= animalCount; i++)
+            for (int i = 0; i <= animalCounter; i++)
             {
                 if (animals[i] != null)
                 {
@@ -98,7 +99,7 @@ namespace UserCollections
 
         public bool Remove(Animal item)
         {
-            for (int i = 0; i <= animalCount; i++)
+            for (int i = 0; i <= animalCounter; i++)
             {
                 if (animals[i] != null && animals[i].Equals(item))
                 {
@@ -111,7 +112,7 @@ namespace UserCollections
 
         public int IndexOf(Animal item)
         {
-            for (int i = 0; i <= animalCount; i++)
+            for (int i = 0; i <= animalCounter; i++)
             {
                 if (animals[i] != null && animals[i].Equals(item))
                 {
@@ -123,11 +124,11 @@ namespace UserCollections
 
         public void Insert(int index, Animal item)
         {
-            if ((animalCount + 1 <= animals.Length) && (index < animalCount) && (index >= 0))
+            if ((animalCounter + 1 <= animals.Length) && (index < animalCounter) && (index >= 0))
             {
-                animalCount++;
+                animalCounter++;
 
-                for (int i = animalCount - 1; i > index; i--)
+                for (int i = animalCounter - 1; i > index; i--)
                 {
                     animals[i] = animals[i - 1];
                 }
@@ -137,10 +138,16 @@ namespace UserCollections
 
         public void RemoveAt(int index)
         {
-            for (int i = index; i < animals.Length; i++)
+            if (index < 0 || index > animalCounter)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            for (int i = index; i < animalCounter; i++)
             {
-                animals[i] = null;
+                animals[i] = animals[i + 1];
             }
+
+            animals[animalCounter] = null;
+            animalCounter--;
         }
     }
 }
