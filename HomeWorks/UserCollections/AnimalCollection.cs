@@ -6,7 +6,7 @@ using System.Text;
 namespace UserCollections
 {
     
-    class ShelterDescription (string address, string shelterName, int phoneNumber) : IEnumerable<Animal>, ICollection<Animal>, IList<Animal>
+    class AnimalCollection (string address, string shelterName, int phoneNumber) : IEnumerable<Animal>, ICollection<Animal>, IList<Animal>
     {
         private Animal?[] animals = new Animal[10];
         private int animalCounter = -1;
@@ -75,12 +75,9 @@ namespace UserCollections
 
         public bool Contains(Animal item)
         {
-            foreach (var animal in animals)
+            if (IndexOf(item) != -1)
             {
-                if (animal != null && animal.Equals(item))
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;
@@ -99,14 +96,15 @@ namespace UserCollections
 
         public bool Remove(Animal item)
         {
-            for (int i = 0; i <= animalCounter; i++)
+            int index = IndexOf(item);
+
+            if (index != -1)
             {
-                if (animals[i] != null && animals[i].Equals(item))
-                {
-                    animals[i] = null;
-                    return true;
-                }
+                animals[index] = null;
+                return true;
             }
+
+            animalCounter--;
             return false;
         }
 

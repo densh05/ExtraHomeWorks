@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static void Info(ShelterDescription shelter)
+        static void Info(AnimalCollection shelter)
         {
             Console.WriteLine($"Shelter: {shelter.ShelterName}");
             Console.WriteLine($"Address: {shelter.Address}");
@@ -28,7 +28,7 @@
             Animal animal7 = new Cat("Mittens", 6, 4, AnimalType.Cat);
             Animal animal8 = new Dog("Rocky", 15, 7, AnimalType.Dog);
 
-            ShelterDescription shelter = new ShelterDescription("123 Main St", "Happy Tails Shelter", 1232424)
+            AnimalCollection collection = new AnimalCollection("123 Main St", "Happy Tails Shelter", 1232424)
             {
                 animal1,
                 animal2,
@@ -39,19 +39,19 @@
                 animal7
             };
 
-            Info(shelter);
+            Info(collection);
 
-            shelter.Add(animal8);
-            Info(shelter);
+            collection.Add(animal8);
+            Info(collection);
 
-            shelter.Remove(animal1);
-            Info(shelter);
+            collection.Remove(animal1);
+            Info(collection);
 
-            bool containsAnimal = shelter.Contains(animal2);
+            bool containsAnimal = collection.Contains(animal2);
             Console.WriteLine($"Contains animal2: {containsAnimal}");
 
             Animal[] animalArray = new Animal[20];
-            shelter.CopyTo(animalArray, 5);
+            collection.CopyTo(animalArray, 5);
 
             foreach (Animal animal in animalArray)
             {
@@ -61,17 +61,17 @@
                 }
             }
 
-            int index = shelter.IndexOf(animal3);
+            int index = collection.IndexOf(animal3);
             Console.WriteLine($"Index of animal3: {index}");
 
-            shelter.Insert(2, new Cat("Snowball", 4, 2, AnimalType.Cat));
-            Info(shelter);
+            collection.Insert(2, new Cat("Snowball", 4, 2, AnimalType.Cat));
+            Info(collection);
 
-            shelter.RemoveAt(6);
-            Info(shelter);
+            collection.RemoveAt(6);
+            Info(collection);
 
-            shelter.Clear();
-            Info(shelter);
+            collection.Clear();
+            Info(collection);
 
         }
     }
