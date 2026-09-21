@@ -53,12 +53,15 @@
             Animal[] animalArray = new Animal[20];
             collection.CopyTo(animalArray, 5);
 
-            foreach (Animal animal in animalArray)
+            foreach (Animal? animal in animalArray)
             {
-                if (animal != null)
-                {
+                if (animal == null)
+                    continue;
+                
                     Console.WriteLine($"Animal: {animal.Name}, Weight: {animal.Weight}, Age: {animal.Age}");
-                }
+                    animal.MakeSound();
+                
+                Console.WriteLine(new string('-', 40));
             }
 
             int index = collection.IndexOf(animal3);

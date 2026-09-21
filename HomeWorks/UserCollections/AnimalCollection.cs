@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace UserCollections
@@ -32,18 +33,45 @@ namespace UserCollections
             }
         }
 
+        struct Enumarator : IEnumerator<Animal>  //My personal implementation of IEnumerator<Animal> interface
+        {
+            private readonly AnimalCollection collection;
+            private int index = -1;
+
+            public Enumarator(AnimalCollection collection)
+            {
+                this.collection = collection;
+            }
+
+            public Animal Current => collection[index];
+
+            object IEnumerator.Current => Current;
+
+            public void Dispose()
+            {
+
+            }
+
+            public bool MoveNext()
+            {
+                index++;
+                return index < collection.Count;
+            }
+
+            public void Reset()
+            {
+                index = -1;
+            }
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         { 
-            return animals.GetEnumerator(); 
+            return new Enumarator(); 
         }
 
         public IEnumerator<Animal> GetEnumerator()
         {
-            for (int i = 0; i < Count; i++)
-            {
-                if (animals[i] != null)
-                    yield return animals[i];
-            }
+            return new Enumarator(this);
         }
 
         private void ResizeArray()
@@ -75,12 +103,7 @@ namespace UserCollections
 
         public bool Contains(Animal item)
         {
-            if (IndexOf(item) != -1)
-            {
-                return true;
-            }
-
-            return false;
+            return IndexOf(item) != -1;
         }
 
         public void CopyTo(Animal[] array, int arrayIndex)
@@ -88,9 +111,7 @@ namespace UserCollections
             for (int i = 0; i <= animalCounter; i++)
             {
                 if (animals[i] != null)
-                {
                     array[arrayIndex++] = animals[i];
-                }
             }
         }
 
@@ -100,11 +121,10 @@ namespace UserCollections
 
             if (index != -1)
             {
-                animals[index] = null;
+                RemoveAt(index);
                 return true;
             }
 
-            animalCounter--;
             return false;
         }
 
@@ -126,7 +146,7 @@ namespace UserCollections
             {
                 animalCounter++;
 
-                for (int i = animalCounter - 1; i > index; i--)
+                for (int i = animalCounter; i > index; i--)
                 {
                     animals[i] = animals[i - 1];
                 }
