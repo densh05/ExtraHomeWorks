@@ -10,13 +10,13 @@ namespace UserCollections
     class AnimalCollection (string address, string shelterName, int phoneNumber) : IEnumerable<Animal>, ICollection<Animal>, IList<Animal>
     {
         private Animal?[] animals = new Animal[10];
-        private int animalCounter = -1;
+        private int lastOccupatedIndex = -1;
 
         public string Address { get; init; } = address;
         public string ShelterName { get; init; } = shelterName;
         public int PhoneNumber { get; set; } = phoneNumber;
 
-        public int Count => animalCounter + 1;
+        public int Count => lastOccupatedIndex + 1;
 
         public bool IsReadOnly => false;
 
@@ -24,16 +24,16 @@ namespace UserCollections
         {
             get
             {
-                if (index < 0 || index >= animals.Length)
-                    throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0 || index >= lastOccupatedIndex)
+                    throw new IndexOutOfRangeException(nameof(index));
 
-                return animals[index];
+                return animals[index]!;
             }
 
             set
             {
-                if (index < 0 || index >= animals.Length)
-                    throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0 || index >= lastOccupatedIndex)
+                    throw new IndexOutOfRangeException(nameof(index));
 
                 animals[index] = value;
             }
@@ -67,13 +67,13 @@ namespace UserCollections
                 ResizeArray();
             }
 
-            animals[++animalCounter] = animal;
+            animals[++lastOccupatedIndex] = animal;
         }
 
         public void Clear()
         {
             animals = new Animal[10];
-            animalCounter = -1;
+            lastOccupatedIndex = -1;
         }
 
         public bool Contains(Animal item)
@@ -83,10 +83,10 @@ namespace UserCollections
 
         public void CopyTo(Animal[] array, int arrayIndex)
         {
-            for (int i = 0; i <= animalCounter; i++)
+            for (int i = 0; i <= lastOccupatedIndex; i++)
             {
                 if (animals[i] != null)
-                    array[arrayIndex++] = animals[i];
+                    array[arrayIndex++] = animals[i]!;
             }
         }
 
@@ -105,7 +105,7 @@ namespace UserCollections
 
         public int IndexOf(Animal item)
         {
-            for (int i = 0; i <= animalCounter; i++)
+            for (int i = 0; i <= lastOccupatedIndex; i++)
             {
                 if (animals[i] != null && animals[i].Equals(item))
                 {
@@ -117,11 +117,11 @@ namespace UserCollections
 
         public void Insert(int index, Animal item)
         {
-            if ((animalCounter + 1 <= animals.Length) && (index < animalCounter) && (index >= 0))
+            if ((lastOccupatedIndex + 1 <= animals.Length) && (index < lastOccupatedIndex) && (index >= 0))
             {
-                animalCounter++;
+                lastOccupatedIndex++;
 
-                for (int i = animalCounter; i > index; i--)
+                for (int i = lastOccupatedIndex; i > index; i--)
                 {
                     animals[i] = animals[i - 1];
                 }
@@ -131,16 +131,16 @@ namespace UserCollections
 
         public void RemoveAt(int index)
         {
-            if (index < 0 || index > animalCounter)
+            if (index < 0 || index > lastOccupatedIndex)
                 throw new ArgumentOutOfRangeException(nameof(index));
 
-            for (int i = index; i < animalCounter; i++)
+            for (int i = index; i < lastOccupatedIndex; i++)
             {
                 animals[i] = animals[i + 1];
             }
 
-            animals[animalCounter] = null;
-            animalCounter--;
+            animals[lastOccupatedIndex] = null;
+            lastOccupatedIndex--;
         }
 
         struct Enumarator : IEnumerator<Animal>  //My personal implementation of IEnumerator<Animal> interface
