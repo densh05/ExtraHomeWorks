@@ -20,9 +20,7 @@ namespace UserCollections
 
         public bool IsReadOnly => false;
 
-        Animal IList<Animal>.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public Animal? this[int index]
+        public Animal this[int index] 
         {
             get
             {
@@ -31,42 +29,19 @@ namespace UserCollections
 
                 return animals[index];
             }
-        }
 
-        struct Enumarator : IEnumerator<Animal>  //My personal implementation of IEnumerator<Animal> interface
-        {
-            private readonly AnimalCollection collection;
-            private int index = -1;
-
-            public Enumarator(AnimalCollection collection)
+            set
             {
-                this.collection = collection;
-            }
+                if (index < 0 || index >= animals.Length)
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
-            public Animal Current => collection[index];
-
-            object IEnumerator.Current => Current;
-
-            public void Dispose()
-            {
-
-            }
-
-            public bool MoveNext()
-            {
-                index++;
-                return index < collection.Count;
-            }
-
-            public void Reset()
-            {
-                index = -1;
+                animals[index] = value;
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         { 
-            return new Enumarator(); 
+            return GetEnumerator(); 
         }
 
         public IEnumerator<Animal> GetEnumerator()
@@ -166,6 +141,37 @@ namespace UserCollections
 
             animals[animalCounter] = null;
             animalCounter--;
+        }
+
+        struct Enumarator : IEnumerator<Animal>  //My personal implementation of IEnumerator<Animal> interface
+        {
+            private readonly AnimalCollection collection;
+            private int index = -1;
+
+            public Enumarator(AnimalCollection collection)
+            {
+                this.collection = collection;
+            }
+
+            public Animal Current => collection[index];
+
+            object IEnumerator.Current => Current;
+
+            public void Dispose()
+            {
+                Reset();
+            }
+
+            public bool MoveNext()
+            {
+                index++;
+                return index < collection.Count;
+            }
+
+            public void Reset()
+            {
+                index = -1;
+            }
         }
     }
 }
