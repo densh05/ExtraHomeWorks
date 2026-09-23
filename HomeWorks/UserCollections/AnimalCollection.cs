@@ -24,7 +24,7 @@ namespace UserCollections
         {
             get
             {
-                if (index < 0 || index >= lastOccupatedIndex)
+                if (index < 0 || index > lastOccupatedIndex)
                     throw new IndexOutOfRangeException(nameof(index));
 
                 return animals[index]!;
@@ -32,7 +32,7 @@ namespace UserCollections
 
             set
             {
-                if (index < 0 || index >= lastOccupatedIndex)
+                if (index < 0 || index > lastOccupatedIndex)
                     throw new IndexOutOfRangeException(nameof(index));
 
                 animals[index] = value;
