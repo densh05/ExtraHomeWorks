@@ -26,12 +26,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicType", "DynamicType\DynamicType.csproj", "{03268C82-A8DE-4DC4-99B6-25AE350268BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserCollections", "UserCollections\UserCollections.csproj", "{0D8E271E-1F29-4E6E-9DAC-58DF6BD32D90}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepositCalculator", "DepositCalculator\DepositCalculator.csproj", "{F0E9C9F7-FDEF-4BF8-9634-5666142F4E75}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalCalculator", "GlobalCalculator\GlobalCalculator.csproj", "{77EDD94C-83A3-4061-829C-EA7151033BBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArithmeticOperations", "ArithmeticOperations\ArithmeticOperations.csproj", "{5A429FEE-74B2-4723-9DE7-C2C0B83D950B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arithmetic", "Arithmetic\Arithmetic.csproj", "{528F2085-9E50-466A-9048-5EF80AAF5CDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemCollections", "SystemCollections\SystemCollections.csproj", "{B493D2FD-75F3-4814-A748-3DCE665E9FE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryIgnoreCase", "DictionaryIngoneCase\DictionaryIgnoreCase.csproj", "{F99FF4C6-8684-416A-AC23-2C41F15978F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +109,14 @@ Global
 		{528F2085-9E50-466A-9048-5EF80AAF5CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{528F2085-9E50-466A-9048-5EF80AAF5CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{528F2085-9E50-466A-9048-5EF80AAF5CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B493D2FD-75F3-4814-A748-3DCE665E9FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B493D2FD-75F3-4814-A748-3DCE665E9FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B493D2FD-75F3-4814-A748-3DCE665E9FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B493D2FD-75F3-4814-A748-3DCE665E9FE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99FF4C6-8684-416A-AC23-2C41F15978F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99FF4C6-8684-416A-AC23-2C41F15978F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99FF4C6-8684-416A-AC23-2C41F15978F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99FF4C6-8684-416A-AC23-2C41F15978F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
