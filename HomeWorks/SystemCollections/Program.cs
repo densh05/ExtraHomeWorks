@@ -27,7 +27,8 @@ namespace SystemCollections
 
             Console.WriteLine(new string('-', 50));
 
-            cats.Sort(new CatsComparer());
+            
+            cats.Sort(new CatsComparerByDescending());
 
             foreach (var cat in cats)
             {
@@ -52,14 +53,18 @@ namespace SystemCollections
             Cat myCat = sortedCats["Luna"];
             myCat.Info();
         }
-        private class CatsComparer : IComparer<Cat>
-        {
-            private readonly CaseInsensitiveComparer comparer = new();
 
+        private class CatsComparerByDescending : IComparer<Cat>
+        {
             public int Compare(Cat? x, Cat? y)
             {
-                int result = comparer.Compare(y?.Weight, x?.Weight);
-                return result;
+                if (x == null && y == null) return 0;
+
+                if (x == null) return -1;
+
+                if (y == null) return 1;
+
+                return Math.Sign(y.Weight - x.Weight);
             }
         }
     }

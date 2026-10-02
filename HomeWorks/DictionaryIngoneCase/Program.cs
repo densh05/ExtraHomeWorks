@@ -8,13 +8,12 @@
 
             Dictionary<string, string> dict = new(StringComparer.OrdinalIgnoreCase)
             {
-                ["Cat"] = "Кіт",
-                ["CAT"] = "Кіт",
-                ["cat"] = "Кіт",
-                ["CaT"] = "Кіт",
-                ["Dog"] = "Собака",
-                ["DOg"] = "Собака",
-                ["dog"] = "Собака"
+                ["Cat"] = "Luna",
+                ["CAT"] = "Masik",
+                ["CaT"] = "Michael",
+                ["Dog"] = "Robby",
+                ["DOg"] = "Bobby",
+                ["dog"] = "Korry"
             };
 
             Console.WriteLine(dict["Cat"]);
