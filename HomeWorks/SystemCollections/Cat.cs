@@ -7,7 +7,6 @@ namespace SystemCollections
     class Cat : Animal
     {
         public BreedType Breed { get; set; }
-
         public void Play()
         {
             Console.WriteLine($"Today {Name} is playing very happily.");
