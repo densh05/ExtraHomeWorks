@@ -19,7 +19,7 @@ namespace SystemCollections
                 new() { Name = "Oliver", Age = 3, Color = "Black", Volume = 6, Weight = 5.0, Breed = BreedType.Persian },
             };
 
-            cats.Sort((cat1, cat2) => cat1.Weight.CompareTo(cat2.Weight));
+            cats.Sort(new Comparison<Cat>((cat1, cat2) => cat1.CompareTo(cat2)));
             foreach (var cat in cats)
             {
                 Console.WriteLine($"{cat.Name} has a weight of {cat.Weight}");
@@ -66,7 +66,7 @@ namespace SystemCollections
 
                 if (y == null) return 1;
 
-                return y.CompareTo(x);
+                return Math.Sign(y.Weight - x.Weight);
             }
         }
     }
