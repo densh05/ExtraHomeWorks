@@ -4,9 +4,15 @@ using System.Text;
 
 namespace SystemCollections
 {
-    class Cat : Animal
+    class Cat : Animal, IComparable<Cat>
     {
         public BreedType Breed { get; set; }
+
+        public int CompareTo(Cat? other)
+        {
+            return Weight.CompareTo(other?.Weight);
+        }
+
         public void Play()
         {
             Console.WriteLine($"Today {Name} is playing very happily.");

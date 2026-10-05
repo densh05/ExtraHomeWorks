@@ -26,7 +26,6 @@ namespace SystemCollections
             }
 
             Console.WriteLine(new string('-', 50));
-
             
             cats.Sort(new CatsComparerByDescending());
 
@@ -52,6 +51,9 @@ namespace SystemCollections
 
             Cat myCat = sortedCats["Luna"];
             myCat.Info();
+
+            cats.Sort();
+            cats.ForEach(cat => Console.WriteLine(cat.Weight));
         }
 
         private class CatsComparerByDescending : IComparer<Cat>
@@ -64,7 +66,7 @@ namespace SystemCollections
 
                 if (y == null) return 1;
 
-                return Math.Sign(y.Weight - x.Weight);
+                return y.CompareTo(x);
             }
         }
     }
