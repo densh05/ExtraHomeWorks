@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemCollections", "System
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryIgnoreCase", "DictionaryIngoneCase\DictionaryIgnoreCase.csproj", "{F99FF4C6-8684-416A-AC23-2C41F15978F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I-O Programming", "I-O Programming\I-O Programming.csproj", "{C463AB54-0828-4A3E-9BD5-26DF057175DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{F99FF4C6-8684-416A-AC23-2C41F15978F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F99FF4C6-8684-416A-AC23-2C41F15978F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F99FF4C6-8684-416A-AC23-2C41F15978F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C463AB54-0828-4A3E-9BD5-26DF057175DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C463AB54-0828-4A3E-9BD5-26DF057175DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C463AB54-0828-4A3E-9BD5-26DF057175DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C463AB54-0828-4A3E-9BD5-26DF057175DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
