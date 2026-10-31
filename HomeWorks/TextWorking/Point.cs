@@ -21,9 +21,6 @@ namespace TextWorking
             if (String.IsNullOrEmpty(format))
                 format = "G";
 
-            if (formatProvider == null)
-                formatProvider = CultureInfo.CurrentCulture;
-
             switch (format.ToUpperInvariant())
             {
                 case "G":

@@ -18,13 +18,14 @@ namespace TextWorking
 
             Console.WriteLine(new string('-', 50));
 
-            string text = "I love programming in C#!";
+            const string text = "I love programming in C#!";
+            const string myFile = "text.txt";
 
-            var swUtf8 = new StreamWriter("text.txt", false, Encoding.UTF8);
+            var swUtf8 = new StreamWriter(myFile, false, Encoding.UTF8);
             swUtf8.WriteLine(text);
             swUtf8.Close();
 
-            StreamReader reader = new("text.txt", Encoding.UTF8);
+            StreamReader reader = new(myFile, Encoding.UTF8);
             Console.WriteLine($"Content: {reader.ReadToEnd()}");
             reader.Close();
 
